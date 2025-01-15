@@ -37,61 +37,256 @@
             <nav id="navmenu" class="navmenu">
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
-                    <li class="dropdown">
-                        <a href="about.html"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="team.html">Team</a></li>
-                            <!--<li><a href="testimonials.html">Testimonials</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                              <ul>
-                                <li><a href="#">Deep Dropdown 1</a></li>
-                                <li><a href="#">Deep Dropdown 2</a></li>
-                                <li><a href="#">Deep Dropdown 3</a></li>
-                                <li><a href="#">Deep Dropdown 4</a></li>
-                                <li><a href="#">Deep Dropdown 5</a></li>
-                              </ul>
-                            </li>-->
-                        </ul>
-                    </li>
+                    <li><a href="about.html" class="">About</a></li>
+                    <!--  <li class="dropdown"><a href="about.html"><span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+        <ul>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Deep Dropdown 1</a></li>
+              <li><a href="#">Deep Dropdown 2</a></li>
+              <li><a href="#">Deep Dropdown 3</a></li>
+              <li><a href="#">Deep Dropdown 4</a></li>
+              <li><a href="#">Deep Dropdown 5</a></li>
+            </ul>
+          </li
+        </ul>
+      </li>>-->
+
                     <li><a href="services.html">Services</a></li>
                     <!--<li><a href="portfolio.html">Portfolio</a></li>-->
                     <!--<li><a href="pricing.html">Pricing</a></li>-->
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="contact.html">Contact</a></li>
+                    <li><a href="Candidate Database.html">Login</a></li>
+                    
+                    <!--<button onclick="logout()">Logout</button>-->
                 </ul>
+                
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
             <!--<a class="btn-getstarted" href="about.html">Get Started</a>-->
+
+            <div class="restricted-content" id="restrictedContent">
+                <!--<h1>Welcome to the Restricted Page</h1>-->
+
+                <button onclick="logout()">Logout</button>
+            </div>
         </div>
     </header>
 
-    <main class="main">
-        <!-- Page Title -->
-        <div class="page-title light-background">
-            <div class="container d-lg-flex justify-content-between align-items-center">
-                <h1 class="mb-2 mb-lg-0">BLOG</h1>
-                <nav class="breadcrumbs">
-                    <ol>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="current">Blog</li>
-                    </ol>
-                </nav>
-            </div>
-        </div><!-- End Page Title -->
-        <!-- Starter Section Section -->
-        <section id="starter-section" class="starter-section section">
+    
+            
+
+
+        
             <style>
                 iframe {
                     width: 100%;
-                    height: 3000px;
+                    height: 2000px;
                     border: none;
                 }
             </style>
 
-            <iframe id="newsIframe" src="https://emkventerprises-news.blogspot.com/" width="100%"></iframe>
+            <iframe id="newsIframe" src="https://emkv-candidatedatabase.blogspot.com/" width="100%"></iframe>
 
-        </section><!-- /Starter Section Section -->
-    </main>
+       
+
+
+
+
+
+
+
+
+
+
+    <div>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background: #f5f5f5;
+            }
+
+            .login-popup {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: #fff;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                padding: 20px;
+                border-radius: 10px;
+                z-index: 1000;
+                width: 300px;
+            }
+
+                .login-popup.active {
+                    display: block;
+                }
+
+                .login-popup h2 {
+                    margin: 0 0 20px;
+                    font-size: 1.5em;
+                }
+
+                .login-popup label {
+                    font-weight: bold;
+                    display: block;
+                    margin-bottom: 5px;
+                }
+
+                .login-popup input {
+                    width: 100%;
+                    padding: 8px;
+                    margin-bottom: 15px;
+                    border: 1px solid #ddd;
+                    border-radius: 5px;
+                }
+
+                .login-popup button {
+                    width: 100%;
+                    padding: 10px;
+                    background: #007bff;
+                    color: #fff;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+
+                    .login-popup button:hover {
+                        background: #0056b3;
+                    }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 999;
+            }
+
+                .overlay.active {
+                    display: block;
+                }
+
+            .restricted-content {
+                display: none;
+                text-align: center;
+                margin: 20px;
+            }
+
+                .restricted-content.active {
+                    display: block;
+                }
+        </style>
+
+        <div class="overlay" id="overlay"></div>
+
+        <div class="login-popup" id="loginPopup">
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <!-- Uncomment the line below if you also wish to use an image logo -->
+                <!-- <img src="assets/img/logo.png" alt=""> -->
+                <!--<h1 class="sitename">Sailor</h1>-->
+                <img src="assets/img/logo.png" style="width:200px">
+            </a>
+            <h2>Login</h2>
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit">Submit</button>
+                <br />
+                <a href="index.html" class="">Home</a>
+            </form>
+        </div>
+
+        <div class="restricted-content" id="restrictedContent">
+            <!--<h1>Welcome to the Restricted Page</h1>-->
+            <p>You have successfully logged in!</p>
+            <button onclick="logout()">Logout</button>
+        </div>
+
+        <script>
+            // Check login status on page load
+            window.onload = function () {
+                const isLoggedIn = localStorage.getItem('isLoggedIn');
+                if (isLoggedIn === 'true') {
+                    showRestrictedContent();
+                } else {
+                    showLoginPopup();
+                }
+            };
+
+            function showLoginPopup() {
+                document.getElementById('loginPopup').classList.add('active');
+                document.getElementById('overlay').classList.add('active');
+            }
+
+            function hideLoginPopup() {
+                document.getElementById('loginPopup').classList.remove('active');
+                document.getElementById('overlay').classList.remove('active');
+            }
+
+            function showRestrictedContent() {
+                document.getElementById('restrictedContent').classList.add('active');
+            }
+
+            function handleLogin(event) {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Replace with actual authentication logic
+                if (username === 'admin' && password === 'password') {
+                    alert('Login successful!');
+                    localStorage.setItem('isLoggedIn', 'true'); // Set login status in localStorage
+                    hideLoginPopup();
+                    showRestrictedContent();
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
+            }
+
+            function logout() {
+                localStorage.removeItem('isLoggedIn'); // Clear login status
+                alert('You have logged out.');
+                location.reload(); // Reload the page
+            }
+        </script>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <footer id="footer" class="footer dark-background">
         <div class="container footer-top">
             <div class="row gy-4">
