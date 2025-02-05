@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>EMKV-Client Data Base</title>
+    <title>EMKV-U/P Settings</title>
     <!-- Custom CSS -->
     <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -51,7 +51,7 @@
                     <a class="navbar-brand" href="#">
                         <!-- Logo icon -->
                         <!--<b class="logo-icon p-l-10">
-                           
+                            
                             <img src="assets/images/logo-icon.png" style="width:30px" alt="homepage" class="light-logo" />
                            
                         </b>-->
@@ -149,17 +149,19 @@
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Client Database</span>
                             </a>
                         </li>
-
+                     
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="true">
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Settings</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fdraft.blogger.com%2Fhome&hl=en-US&ifkv=AVdkyDllyo-3EyZFdCDncgTAfipPKg-CdgvJuWDnRZr0JKmHrCOSon1UJx02IixDk_VxyEd4CkrKqg&ltmpl=blogger&rip=1&sacu=1&service=blogger&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S2015172920%3A1737363014790762&ddm=1" target="_blank" aria-expanded="true">
                                 <i class="mdi mdi-view-dashboard"></i><span class="hide-menu">Data InPut Login</span>
                             </a>
                         </li>
+                       
 
                                                                   </ul>
                 </nav>
@@ -176,17 +178,7 @@
               
 
 
-                <style>
-                    iframe {
-                        width: 100%;
-                        height: 2000px;
-                        border: none;
-                    }
-                </style>
-
-                <iframe id="newsIframe" src="https://emkv-clientdatabase.blogspot.com/" width="100%"></iframe>
-
-
+              
 
 
                 <div>
@@ -277,6 +269,7 @@
 
                     <div class="overlay" id="overlay"></div>
 
+                    <!-- Login Popup -->
                     <div class="login-popup" id="loginPopup">
                         <a href="https://new.emkventerprises.com" class="logo d-flex align-items-center me-auto">
                             <!-- Uncomment the line below if you also wish to use an image logo -->
@@ -294,15 +287,31 @@
 
                             <button type="submit">Submit</button>
                             <br />
-                            <a href="https://new.emkventerprises.com" class="">Home</a>
+                            <a href="https://new.emkventerprises.com/" class="">Home</a>
                         </form>
                     </div>
 
-                    <div class="restricted-content" id="restrictedContent">
-                        <!--<h1>Welcome to the Restricted Page</h1>-->
+                    <!-- Settings Popup -->
+                    <div class="settings-popup popup" id="settingsPopup">
+                        <h2>Change Credentials</h2>
+                        <form id="settingsForm" onsubmit="handleSettingsChange(event)">
+                            <label for="newUsername">New Username</label>
+                            <input type="text" id="newUsername" name="newUsername" required>
+
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" name="newPassword" required>
+
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+
+                    <!-- Restricted Content -->
+                    <!--<div class="restricted-content" id="restrictedContent">
+                        <h1>Change Credentials</h1>
                         <p>You have successfully logged in!</p>
                         <button onclick="logout()">Logout</button>
-                    </div>
+                        <button onclick="openSettings()">Change Username & Password</button>
+                    </div>-->
 
                     <script>
                         // Default credentials (initially stored in localStorage)
@@ -386,6 +395,7 @@
                         }
                     </script>
                 </div>
+
 
 
 

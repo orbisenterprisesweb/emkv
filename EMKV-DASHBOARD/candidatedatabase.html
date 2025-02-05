@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>EMKV-DASHBOARD</title>
+    <title>EMKV-Candidate Database</title>
     <!-- Custom CSS -->
     <link href="assets/libs/flot/css/float-chart.css" rel="stylesheet">
     <!-- Custom CSS -->
@@ -163,7 +163,7 @@
                         </li>
                        
 
-                                                                  </ul>
+                   </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -280,7 +280,7 @@
                     <div class="overlay" id="overlay"></div>
 
                     <div class="login-popup" id="loginPopup">
-                        <a href="https://orbisenterprisesweb.github.io/emkv/index.html" class="logo d-flex align-items-center me-auto">
+                        <a href="https://new.emkventerprises.com" class="logo d-flex align-items-center me-auto">
                             <!-- Uncomment the line below if you also wish to use an image logo -->
                             <!-- <img src="assets/img/logo.png" alt=""> -->
                             <!--<h1 class="sitename">Sailor</h1>-->
@@ -296,7 +296,7 @@
 
                             <button type="submit">Submit</button>
                             <br />
-                            <a href="https://orbisenterprisesweb.github.io/emkv/index.html" class="">Home</a>
+                            <a href="https://new.emkventerprises.com/" class="">Home</a>
                         </form>
                     </div>
 
@@ -307,6 +307,12 @@
                     </div>
 
                     <script>
+                        // Default credentials (initially stored in localStorage)
+                        if (!localStorage.getItem('credentials')) {
+                            const defaultCredentials = JSON.stringify({ username: 'admin', password: 'password' });
+                            localStorage.setItem('credentials', defaultCredentials);
+                        }
+
                         // Check login status on page load
                         window.onload = function () {
                             const isLoggedIn = localStorage.getItem('isLoggedIn');
@@ -331,16 +337,30 @@
                             document.getElementById('restrictedContent').classList.add('active');
                         }
 
+                        function hideRestrictedContent() {
+                            document.getElementById('restrictedContent').classList.remove('active');
+                        }
+
+                        function openSettings() {
+                            document.getElementById('settingsPopup').classList.add('active');
+                            document.getElementById('overlay').classList.add('active');
+                        }
+
+                        function closeSettings() {
+                            document.getElementById('settingsPopup').classList.remove('active');
+                            document.getElementById('overlay').classList.remove('active');
+                        }
+
                         function handleLogin(event) {
                             event.preventDefault();
 
                             const username = document.getElementById('username').value;
                             const password = document.getElementById('password').value;
+                            const storedCredentials = JSON.parse(localStorage.getItem('credentials'));
 
-                            // Replace with actual authentication logic
-                            if (username === 'admin' && password === 'password') {
+                            if (username === storedCredentials.username && password === storedCredentials.password) {
                                 alert('Login successful!');
-                                localStorage.setItem('isLoggedIn', 'true'); // Set login status in localStorage
+                                localStorage.setItem('isLoggedIn', 'true');
                                 hideLoginPopup();
                                 showRestrictedContent();
                             } else {
@@ -349,12 +369,24 @@
                         }
 
                         function logout() {
-                            localStorage.removeItem('isLoggedIn'); // Clear login status
+                            localStorage.removeItem('isLoggedIn');
                             alert('You have logged out.');
-                            location.reload(); // Reload the page
+                            location.reload();
+                        }
+
+                        function handleSettingsChange(event) {
+                            event.preventDefault();
+
+                            const newUsername = document.getElementById('newUsername').value;
+                            const newPassword = document.getElementById('newPassword').value;
+
+                            const updatedCredentials = JSON.stringify({ username: newUsername, password: newPassword });
+                            localStorage.setItem('credentials', updatedCredentials);
+
+                            alert('Credentials updated successfully!');
+                            closeSettings();
                         }
                     </script>
-                </div>
 
 
 
